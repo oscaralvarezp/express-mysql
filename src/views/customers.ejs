@@ -1,0 +1,54 @@
+<% include partials/header %>
+    <div class="container">
+        <div class="row mt-5">
+            <div class="col-md-7">
+                <table class="table table-bordered table-hover">
+                    <thead>
+                        <tr>
+                            <th>Name</th>
+                            <th>Address</th>
+                            <th>Phone</th>
+                            <th colspan="2">Actions</th>
+                            <tbody>
+                                <% if(data) { %>
+                                    <% data.forEach(customer => { %>
+                                        <tr>
+                                            <td><%= customer.name %></td>
+                                            <td><%= customer.address %></td>
+                                            <td><%= customer.phone %></td>
+                                            <td>
+                                                <a href="/delete/<%= customer.id %>" class="btn btn-danger btn-sm">Delete</a>
+                                                <a href="/update-customer/<%= customer.id %>" class="btn btn-info btn-sm">Edit</a>
+                                            </td>
+                                        </tr>
+                                    <% }) %>
+                                <% } %>
+                                
+                            </tbody>
+                        </tr>
+                    </thead>
+                </table>
+            </div>
+            <div class="col-md-5">
+                <div class="card">
+                    <div class="card-body">
+                        <form action="/add-customer" method="POST">
+                            <div class="form-group">
+                                <input type="text" name="name" placeholder="Write a name" class="form-control">
+                            </div>
+                            <div class="form-group">
+                                <input type="text" name="address" placeholder="Write a address" class="form-control">
+                            </div>
+                            <div class="form-group">
+                                <input type="text" name="phone" placeholder="Write a phone" class="form-control">
+                            </div>
+                            <button type="submit" class="btn btn-success">
+                                Save Customer
+                            </button>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+<% include partials/footer %> 
